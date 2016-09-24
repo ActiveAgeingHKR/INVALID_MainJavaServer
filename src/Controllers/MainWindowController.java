@@ -22,9 +22,9 @@ public class MainWindowController implements Initializable {
     private Label label;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private void handleStartBtnAction(ActionEvent event) {
+        //TODO
+        //Add the code that starts the MainServerThread
     }
     
     @Override
