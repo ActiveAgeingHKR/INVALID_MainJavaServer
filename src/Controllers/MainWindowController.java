@@ -11,10 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import SystemClasses.ServerMain;
+import java.io.*;
 
 /**
  *
- * @author panos
+ * @author panos, chris
  */
 public class MainWindowController implements Initializable {
     
@@ -22,9 +25,21 @@ public class MainWindowController implements Initializable {
     private Label label;
     
     @FXML
+    private TextField ipTxt, portTxt;
+    //not sure what to do with ip field since server socket is constructed just with port (ip is assumed to be current machine)
+    
+    private int portNumber;
+    
+    @FXML
     private void handleStartBtnAction(ActionEvent event) {
-        //TODO
-        //Add the code that starts the MainServerThread
+        portNumber = Integer.parseInt(portTxt.getText());
+        try{
+            new ServerMain(portNumber).start();
+        } catch (IOException e) {
+            System.err.println("Could not start new main server thread");
+            System.exit(-1);
+        }
+        
     }
     
     @Override
