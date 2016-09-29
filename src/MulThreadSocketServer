@@ -1,0 +1,27 @@
+package SeverSimulator;
+import java.net.ServerSocket;
+import java.net.Socket;
+public class MulThreadSocketServer {
+	 public static void main(String[] args) {
+         ServerSocket serverSocket = null;
+         Socket socket = null;
+          int port = 8888;
+         try {
+                  //connection establishment
+                  serverSocket = new ServerSocket(port);
+                  System.out.println("The server is running：");
+                  while(true){
+                            socket = serverSocket.accept();
+                           //Strat thread
+                           new ClientThread(socket);
+                  }
+         } catch (Exception e) {
+                  e.printStackTrace();
+         }finally{
+                  try{
+                           //close
+                           serverSocket.close();
+                  }catch(Exception e){}
+         }
+}
+}
